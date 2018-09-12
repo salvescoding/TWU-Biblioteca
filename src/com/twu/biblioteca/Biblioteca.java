@@ -1,14 +1,13 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 
-public class Biblioteca {
+class Biblioteca {
 
     private List<Book> books = new ArrayList<Book>();
-    private Input userInput = new Input();
-    private Output printer = new Output();
+    private final Input userInput = new Input();
+    private final Output printer = new Output();
 
     public void run() {
         createBooks();
@@ -30,7 +29,7 @@ public class Biblioteca {
         books.add(b1); books.add(b2); books.add(b3);
     }
 
-    protected void action(int userChoice) {
+    private void action(int userChoice) {
         switch (userChoice) {
             case 1: listBooks();
                     break;
@@ -42,27 +41,62 @@ public class Biblioteca {
         }
     }
 
-    private void goodbyeMessage() {
-        printer.goodBye();
+    private void listBooks() {
+        printer.headersBooks();
+        for (Book book : books) {
+            if (!book.isCheckout()) {
+                printer.printBook(book);
+            }
+        }
+
+    }
+
+    private void checkoutBook() {
+        listBooks();
+        int bookToCheckout = getIdOfBook();
+        Book book = findBook(bookToCheckout);
+        checkoutIsBookEmpty(book);
+        book.checkoutBook();
+        printCheckoutMessageSuccessfullOrUnsuccessfull(book);
     }
 
     private void returnBook() {
         listCheckoutBooks();
         int bookToReturn = getIdOfBook();
         Book book = findBook(bookToReturn);
-        returnIfBookIsNotEmpty(book);
+        returnIsBookEmpty(book);
         book.returnBook();
         printReturnMessageSuccessfullOrUnsuccessfull(book);
+    }
+
+    private void goodbyeMessage() {
+        printer.goodBye();
+    }
+
+    private void listCheckoutBooks() {
+        printer.headersBooks();
+        for (Book book : books) {
+            if (book.isCheckout()) {
+                printer.printBook(book);
+            }
+        }
     }
 
     private int getIdOfBook() {
         return userInput.getIdOfBook();
     }
 
-    private void returnIfBookIsNotEmpty(Book book) {
+    private void returnIsBookEmpty(Book book) {
         if (book.isEmpty()) {
             printer.bookNotFound();
             this.returnBook();
+        }
+    }
+
+    private void checkoutIsBookEmpty(Book book) {
+        if (book.isEmpty()) {
+            printer.bookNotFound();
+            this.checkoutBook();
         }
     }
 
@@ -75,37 +109,12 @@ public class Biblioteca {
         }
     }
 
-    private void listCheckoutBooks() {
-        printer.headersBooks();
-        for (Book book : books) {
-            if (book.isCheckout()) {
-                printer.printBook(book);
-            }
-        }
-    }
-
-    private void checkoutBook() {
-        listBooks();
-        int bookToCheckout = getIdOfBook();
-        Book book = findBook(bookToCheckout);
-        checkoutIfBookIsNotEmpty(book);
-        book.checkoutBook();
-        printCheckoutMessageSuccessfullOrUnsuccessfull(book);
-    }
-
     private void printCheckoutMessageSuccessfullOrUnsuccessfull(Book book) {
         if (book.isCheckout()) {
             printer.successfullCheckout();
         }
         else {
             printer.unsuccessfullCheckout();
-        }
-    }
-
-    private void checkoutIfBookIsNotEmpty(Book book) {
-        if (book.isEmpty()) {
-            printer.bookNotFound();
-            this.checkoutBook();
         }
     }
 
@@ -117,15 +126,5 @@ public class Biblioteca {
             }
         }
         return bookFound;
-    }
-
-    private void listBooks() {
-        printer.headersBooks();
-        for (Book book : books) {
-            if (!book.isCheckout()) {
-                printer.printBook(book);
-            }
-        }
-
     }
 }

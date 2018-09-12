@@ -5,13 +5,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class BibliotecaTest {
+class BibliotecaTest {
 
     private static Biblioteca biblio;
     private static Book book;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         biblio = new Biblioteca();
         book = new Book(2, "Paulo", "1678");
     }

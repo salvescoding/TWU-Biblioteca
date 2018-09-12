@@ -22,19 +22,19 @@ public class BookTest {
 
     @Test
     public void bookCheckoutShouldReturnFalseWhenInitialized() {
-        assertEquals(false, book.isCheckout());
+        assertFalse(book.isCheckout());
     }
 
     @Test
     public void bookIsCheckoutShouldReturnTrueWhenCheckoutBook(){
         book.checkoutBook();
-        assertEquals(true, book.isCheckout());
+        assertTrue(book.isCheckout());
     }
 
     @Test
     public void bookIsCheckoutShouldReturnFalseWhenReturnBook() {
         book.returnBook();
-        assertEquals(false, book.isCheckout());
+        assertFalse(book.isCheckout());
     }
 
 

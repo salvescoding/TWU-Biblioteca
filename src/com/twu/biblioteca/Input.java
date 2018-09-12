@@ -1,11 +1,10 @@
 package com.twu.biblioteca;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Input {
+class Input {
 
-    private static Scanner userInput = new Scanner(System.in);
+    private static final Scanner userInput = new Scanner(System.in);
 
     public int getUserInput() {
         return printGeneralUserInput("Choose the number:  ");

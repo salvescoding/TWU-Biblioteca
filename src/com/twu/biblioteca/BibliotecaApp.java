@@ -1,10 +1,10 @@
 package com.twu.biblioteca;
 
 
-public class BibliotecaApp {
+class BibliotecaApp {
 
 
-    private static Biblioteca biblio = new Biblioteca();
+    private static final Biblioteca biblio = new Biblioteca();
 
 
     public static void main(String[] args) {

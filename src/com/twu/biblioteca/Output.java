@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-public class Output {
+class Output {
 
 
     public void welcomeMessage() {

@@ -1,18 +1,15 @@
 package com.twu.biblioteca;
 
-public class Book {
+class Book {
 
     private String author;
     private String yearPublished;
     private boolean checkout;
     private int id;
-    ;
 
     public int getId() { return this.id; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
 
     public void returnBook() { setCheckout(false); }
 
