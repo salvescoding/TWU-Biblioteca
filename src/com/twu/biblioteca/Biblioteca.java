@@ -29,7 +29,7 @@ public class Biblioteca {
         books.add(b1); books.add(b2); books.add(b3);
     }
 
-    private void action(int userChoice) {
+    protected void action(int userChoice) {
         switch (userChoice) {
             case 1: listBooks();
                     break;
@@ -49,16 +49,24 @@ public class Biblioteca {
         listBooks();
         int bookToCheckout = userInput.getIdOfBookToCheckout();
         Book book = findBook(bookToCheckout);
-        if (book.isEmpty()) {
-            printer.bookNotFound();
-            this.checkoutBook();
-        }
+        checkIfBookIsNotEmpty(book);
         book.checkoutBook();
+        printCheckoutMessageSuccessfullOrUnsuccessfull(book);
+    }
+
+    private void printCheckoutMessageSuccessfullOrUnsuccessfull(Book book) {
         if (book.isCheckout()) {
             printer.successfullCheckout();
         }
         else {
             printer.unsuccessfullCheckout();
+        }
+    }
+
+    private void checkIfBookIsNotEmpty(Book book) {
+        if (book.isEmpty()) {
+            printer.bookNotFound();
+            this.checkoutBook();
         }
     }
 
