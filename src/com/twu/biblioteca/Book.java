@@ -6,10 +6,13 @@ public class Book {
     private String yearPublished;
     private boolean checkout;
     private int id;
+    ;
 
     public int getId() { return this.id; }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void returnBook() { setCheckout(false); }
 
@@ -28,9 +31,10 @@ public class Book {
     public void setYearPublished(String yearPublished) { this.yearPublished = yearPublished; }
 
 
-    public Book(String author, String yearPublished) {
+    public Book(int id, String author, String yearPublished) {
         setAuthor(author);
         setYearPublished(yearPublished);
+        setId(id);
         this.checkout = false;
     }
 

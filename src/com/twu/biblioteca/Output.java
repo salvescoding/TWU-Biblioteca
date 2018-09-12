@@ -7,45 +7,32 @@ public class Output {
 
 
     public void welcomeMessage() {
-        System.out.format("%30", "Welcome to your local Biblioteca");
+        System.out.format("%30s","Welcome to your local Biblioteca");
+        System.out.println();
         for (int i = 0; i < 70; i++) {
             System.out.print("-");
         }
         System.out.println();
     }
 
-    public void listBooks() {
-        System.out.format("%10s%30s", "Author", "Year Published");
-        System.out.println();
-    }
 
-    public void getUserInput() {
-        int choice = 0;
-        while (choice != 2) {
-            listOptions();
-            System.out.print("Your choice: ");
-            if (userInput.hasNext()) {
-                choice = userInput.nextInt();
-                runOptions(choice);
-            }
-            else {
-                System.out.println("Select a valid option!");
-            }
-        }
-    }
-
-    private void listOptions() {
+    public void listOptions() {
         System.out.println();
         System.out.println("Please choose one of the following options");
-        System.out.println("1 - List all books");
-        System.out.println("2 - Quit");
+        System.out.println("1 - List all Books");
+        System.out.println("2 - Checkout Book");
+        System.out.println("3 - Return Book");
+        System.out.println("4 - Quit");
     }
 
-    private void runOptions(int userChoice) {
-        switch (userChoice) {
-            case 1: listBooks();
-                    break;
-            case 2: break;
-        }
+
+    public void headersBooks() {
+        System.out.format("%5s%20s%20s","ID", "Author", "Year Published");
+        System.out.println();
+    }
+
+    public void printBook(Book book) {
+        System.out.format("%5s%20s%20s", book.getId(), book.getAuthor(), book.getYearPublished());
+        System.out.println();
     }
 }

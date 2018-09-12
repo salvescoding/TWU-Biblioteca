@@ -11,7 +11,7 @@ public class BookTest {
 
     @Before
     public void setUp() {
-        book = new Book( "Paulo Coelho", "1989");
+        book = new Book( 1,"Paulo Coelho", "1989");
     }
 
     @Test
@@ -19,7 +19,6 @@ public class BookTest {
         assertEquals("Paulo Coelho", book.getAuthor());
         assertEquals("1989", book.getYearPublished());
     }
-
 
     @Test
     public void bookCheckoutShouldReturnFalseWhenInitialized() {
