@@ -1,18 +1,14 @@
 package com.twu.biblioteca;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PrinterConsole {
+public class Output {
 
-    private static Scanner userInput = new Scanner(System.in);
-    private static List<Book> allBooks = Book.all();
 
     public void welcomeMessage() {
-        System.out.println("Welcome to your local Biblioteca");
-        for (int i = 0; i < 30; i++) {
+        System.out.format("%30", "Welcome to your local Biblioteca");
+        for (int i = 0; i < 70; i++) {
             System.out.print("-");
         }
         System.out.println();
@@ -21,10 +17,6 @@ public class PrinterConsole {
     public void listBooks() {
         System.out.format("%10s%30s", "Author", "Year Published");
         System.out.println();
-        for (Book book : allBooks) {
-            System.out.format("%10s%20s", book.getAuthor(), book.getYearPublished());
-            System.out.println();
-        }
     }
 
     public void getUserInput() {

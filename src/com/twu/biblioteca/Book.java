@@ -1,17 +1,23 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Book {
 
     private String author;
     private String yearPublished;
-    private static List<Book> allBooks = new ArrayList<Book>();
+    private boolean checkout;
+    private int id;
 
-    public static List<Book> all() {
-        return allBooks;
-    }
+    public int getId() { return this.id; }
+
+    public void setId(int id) { this.id = id; }
+
+    public void returnBook() { setCheckout(false); }
+
+    public void checkoutBook() { setCheckout(true); }
+
+    private void setCheckout(boolean checkout) { this.checkout = checkout; }
+
+    public boolean isCheckout() { return checkout; }
 
     public String getAuthor() { return author; }
 
@@ -21,19 +27,12 @@ public class Book {
 
     public void setYearPublished(String yearPublished) { this.yearPublished = yearPublished; }
 
+
     public Book(String author, String yearPublished) {
         setAuthor(author);
         setYearPublished(yearPublished);
-        addBookToAllBooks();
+        this.checkout = false;
     }
-
-    private void addBookToAllBooks() {
-        allBooks.add(this);
-    }
-
-
-
-
 
 
 
