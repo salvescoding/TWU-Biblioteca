@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,12 +29,27 @@ public class Output {
 
 
     public void headersBooks() {
-        System.out.format("%5s%20s%20s","ID", "Author", "Year Published");
+        System.out.format("%5s%30s%20s","ID", "Author", "Year Published");
         System.out.println();
     }
 
     public void printBook(Book book) {
-        System.out.format("%5s%20s%20s", book.getId(), book.getAuthor(), book.getYearPublished());
+        System.out.format("%5s%30s%20s", book.getId(), book.getAuthor(), book.getYearPublished());
         System.out.println();
+
+    }
+
+
+    public void successfullCheckout() {
+        System.out.println("Thank you! Enjoy the book");
+    }
+
+
+    public void unsuccessfullCheckout() {
+        System.out.println("That book is not available.");
+    }
+
+    public void bookNotFound() {
+        System.out.println("Book not found, please try again.");
     }
 }

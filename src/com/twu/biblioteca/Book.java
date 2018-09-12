@@ -38,6 +38,10 @@ public class Book {
         this.checkout = false;
     }
 
+    public Book() {}
 
 
+    public boolean isEmpty() {
+        return getId() == 0 && getAuthor() == null && getYearPublished() == null;
+    }
 }

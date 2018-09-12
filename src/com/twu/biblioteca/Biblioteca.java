@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import com.sun.xml.internal.bind.v2.runtime.property.StructureLoaderBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +8,6 @@ public class Biblioteca {
     private List<Book> books = new ArrayList<Book>();
     private Input userInput = new Input();
     private Output printer = new Output();
-    private Book book;
 
     public void run() {
         createBooks();
@@ -49,13 +46,38 @@ public class Biblioteca {
     }
 
     private void checkoutBook() {
+        listBooks();
+        int bookToCheckout = userInput.getIdOfBookToCheckout();
+        Book book = findBook(bookToCheckout);
+        if (book.isEmpty()) {
+            printer.bookNotFound();
+            this.checkoutBook();
+        }
+        book.checkoutBook();
+        if (book.isCheckout()) {
+            printer.successfullCheckout();
+        }
+        else {
+            printer.unsuccessfullCheckout();
+        }
+    }
 
+    private Book findBook(int bookToCheckout) {
+        Book bookFound = new Book();
+        for (Book book : books) {
+            if (book.getId() == bookToCheckout) {
+                bookFound = book;
+            }
+        }
+        return bookFound;
     }
 
     private void listBooks() {
         printer.headersBooks();
         for (Book book : books) {
-            printer.printBook(book);
+            if (!book.isCheckout()) {
+                printer.printBook(book);
+            }
         }
 
     }

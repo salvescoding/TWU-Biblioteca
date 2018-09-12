@@ -8,7 +8,8 @@ public class Input {
 
     public int getUserInput() {
         int choice = 0;
-        System.out.print("Your choice: ");
+        System.out.println();
+        System.out.print("Choose the number:  ");
         if (userInput.hasNext()) {
             choice = userInput.nextInt();
         }
@@ -19,4 +20,16 @@ public class Input {
 
     }
 
+
+    public int getIdOfBookToCheckout() {
+        int choice = 0;
+        System.out.print("Choose the number:  ");
+        if (userInput.hasNext()) {
+            choice = userInput.nextInt();
+        }
+        else {
+            System.out.println("Select a valid option!");
+        }
+        return choice;
+    }
 }
