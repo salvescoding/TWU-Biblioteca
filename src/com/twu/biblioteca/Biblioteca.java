@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class Biblioteca {
@@ -47,12 +48,15 @@ public class Biblioteca {
 
     private void returnBook() {
         listCheckoutBooks();
-        int bookToReturn = userInput.getIdOfBookToCheckout();
+        int bookToReturn = getIdOfBook();
         Book book = findBook(bookToReturn);
         returnIfBookIsNotEmpty(book);
         book.returnBook();
         printReturnMessageSuccessfullOrUnsuccessfull(book);
+    }
 
+    private int getIdOfBook() {
+        return userInput.getIdOfBook();
     }
 
     private void returnIfBookIsNotEmpty(Book book) {
@@ -82,7 +86,7 @@ public class Biblioteca {
 
     private void checkoutBook() {
         listBooks();
-        int bookToCheckout = userInput.getIdOfBookToCheckout();
+        int bookToCheckout = getIdOfBook();
         Book book = findBook(bookToCheckout);
         checkoutIfBookIsNotEmpty(book);
         book.checkoutBook();

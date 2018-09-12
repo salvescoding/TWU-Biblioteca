@@ -34,6 +34,7 @@ public class Output {
 
 
     public void successfullCheckout() {
+        System.out.println();
         System.out.println("Thank you! Enjoy the book");
     }
 
@@ -43,6 +44,7 @@ public class Output {
     }
 
     public void successfullReturn() {
+        System.out.println();
         System.out.println("Thank you for returning the book.");
     }
 
