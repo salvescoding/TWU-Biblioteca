@@ -1,20 +1,13 @@
 package com.twu.biblioteca;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
-
-import java.util.List;
-import java.util.Scanner;
-
 public class Output {
 
 
     public void welcomeMessage() {
+        System.out.println();
         System.out.format("%30s","Welcome to your local Biblioteca");
         System.out.println();
-        for (int i = 0; i < 70; i++) {
-            System.out.print("-");
-        }
-        System.out.println();
+        printDashes();
     }
 
 
@@ -49,7 +42,29 @@ public class Output {
         System.out.println("That book is not available.");
     }
 
+    public void successfullReturn() {
+        System.out.println("Thank you for returning the book.");
+    }
+
     public void bookNotFound() {
         System.out.println("Book not found, please try again.");
+    }
+
+    public void goodBye() {
+        System.out.println();
+        System.out.format("%30s","Thank you! We will be looking forward to see you again");
+        System.out.println();
+        printDashes();
+    }
+
+    private void printDashes() {
+        for (int i = 0; i < 70; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+    }
+
+    public void unsuccessfullReturn() {
+        System.out.println("That is not a valid book to return.");
     }
 }
