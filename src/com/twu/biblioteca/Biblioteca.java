@@ -5,12 +5,11 @@ import java.util.List;
 
 class Biblioteca {
 
-    private List<Book> books = new ArrayList<Book>();
+    public static List<Book> books = new ArrayList<Book>();
     private final Input userInput = new Input();
     private final Output printer = new Output();
 
     public void run() {
-        createBooks();
         printer.welcomeMessage();
         printer.listOptions();
         int userChoice = userInput.getUserInput();
@@ -22,12 +21,7 @@ class Biblioteca {
         goodbyeMessage();
     }
 
-    private void createBooks() {
-        Book b1 = new Book(1,"Paulo Coelho", "1999");
-        Book b2 = new Book(2,"Vladimir Nabokov", "2012");
-        Book b3 = new Book(3, "Foster Wallace", "2014");
-        books.add(b1); books.add(b2); books.add(b3);
-    }
+
 
     private void action(int userChoice) {
         switch (userChoice) {
