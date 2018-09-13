@@ -21,11 +21,12 @@ public class Return {
 
     }
 
-    private List<Book> getBooksToReturn() {
+    protected List<Book> getBooksToReturn() {
         return this.shelf.returnBooks();
     }
 
     private void printBooksToReturn(List<Book> booksToReturn) {
+        print.headersBooks();
         for (Book book : booksToReturn) {
             print.printBook(book);
         }
@@ -56,4 +57,5 @@ public class Return {
             print.unsuccessfullReturn();
         }
     }
+
 }

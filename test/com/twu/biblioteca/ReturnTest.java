@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 
 import static org.junit.Assert.*;
@@ -42,6 +43,14 @@ public class ReturnTest {
         Book book =  returnBook.findBook(1);
         boolean result = returnBook.isBookValid(book);
         assertEquals(true, result);
+    }
+
+    @Test
+    public void checkoutAvailableBooksShouldOnlyHaveBooksNotCheckout() {
+        List<Book> books = returnBook.getBooksToReturn();
+        for (Book book : books) {
+            assertEquals(true, book.isCheckout());
+        }
     }
 
     @Test

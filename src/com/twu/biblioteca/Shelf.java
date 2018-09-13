@@ -29,23 +29,23 @@ public class Shelf {
     }
 
     protected List<Book> listBooks() {
-        List<Book> books = new ArrayList<Book>();
+        List<Book> availableBooks = new ArrayList<Book>();
         for (Book book : books) {
             if (!book.isCheckout()) {
-                books.add(book);
+                availableBooks.add(book);
             }
         }
-        return books;
+        return availableBooks;
     }
 
     protected List<Book> returnBooks() {
-        List<Book> books = new ArrayList<Book>();
+        List<Book> booksToReturn = new ArrayList<Book>();
         for (Book book : books) {
             if (book.isCheckout()) {
-                books.add(book);
+                booksToReturn.add(book);
             }
         }
-        return books;
+        return booksToReturn;
     }
 
 

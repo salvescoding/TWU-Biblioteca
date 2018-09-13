@@ -14,18 +14,23 @@ public class Checkout {
     }
 
     public void checkoutBook() {
-        List<Book> books = getAvailableBooks();
-        printAvailableBooks(books);
+        this.listAvailableBooks();
         int id = userInput.getIdOfBook();
         Book book = findBook(id);
         checkoutBookIfValid(book);
     }
 
-    private List<Book> getAvailableBooks() {
+    public void listAvailableBooks() {
+        List<Book> books = this.getAvailableBooks();
+        printAvailableBooks(books);
+    }
+
+    protected List<Book> getAvailableBooks() {
         return this.shelf.listBooks();
     }
 
     private void printAvailableBooks(List<Book> books) {
+        print.headersBooks();
         for (Book book : books) {
             print.printBook(book);
         }

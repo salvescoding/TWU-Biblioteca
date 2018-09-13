@@ -24,7 +24,7 @@ class Biblioteca {
 
     private void action(int userChoice) {
         switch (userChoice) {
-            case 1: shelf.listBooks();
+            case 1: checkout.listAvailableBooks();
                     break;
             case 2: checkout.checkoutBook();
                     break;

@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -46,8 +47,11 @@ public class CheckoutTest {
     }
 
     @Test
-    public void listBooksShouldOnlyDisplayAvailableBooks() {
-
+    public void checkoutAvailableBooksShouldOnlyHaveBooksNotCheckout() {
+        List<Book> books = checkout.getAvailableBooks();
+        for (Book book : books) {
+            assertEquals(false, book.isCheckout());
+        }
     }
 
     @Test
