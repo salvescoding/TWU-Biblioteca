@@ -14,7 +14,7 @@ class Output {
     public void listOptions() {
         System.out.println();
         System.out.println("Please choose one of the following options");
-        System.out.println("1 - List all Books");
+        System.out.println("1 - List Books");
         System.out.println("2 - Checkout Book");
         System.out.println("3 - Return Book");
         System.out.println("4 - Quit");
