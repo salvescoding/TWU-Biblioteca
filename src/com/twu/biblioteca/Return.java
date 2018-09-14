@@ -10,6 +10,7 @@ public class Return {
 
     public Return(Shelf shelf) {
         this.shelf = shelf;
+
     }
 
     public void returnBook() {
@@ -28,8 +29,9 @@ public class Return {
     private void printBooksToReturn(List<Book> booksToReturn) {
         print.headersBooks();
         for (Book book : booksToReturn) {
-            print.printBook(book);
+            print.printBookCheckout(book);
         }
+
     }
 
     private void returnBookIfValid(Book book) {
@@ -37,6 +39,7 @@ public class Return {
             book.returnBook();
             printMessage(isBookValid(book));
         } else {
+            print.bookNotFound();
             printMessage(false);
             this.returnBook();
         }

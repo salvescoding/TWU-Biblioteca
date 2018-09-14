@@ -5,7 +5,6 @@ import java.util.List;
 public class Checkout {
 
     private Shelf shelf;
-
     private Output print = new Output();
     private final Input userInput = new Input();
 
@@ -41,6 +40,7 @@ public class Checkout {
             book.checkoutBook();
             printMessage(isBookValid(book));
         } else {
+            print.bookNotFound();
             printMessage(false);
             this.checkoutBook();
         }

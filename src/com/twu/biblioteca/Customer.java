@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 public class Customer {
 
     private String libraryNumber;
-
     private String password;
     private String name;
     private String email;

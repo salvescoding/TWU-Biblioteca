@@ -41,15 +41,14 @@ public class ReturnTest {
     @Test
     public void checkIfBookFoundIsEmptyOrNot() {
         Book book =  returnBook.findBook(1);
-        boolean result = returnBook.isBookValid(book);
-        assertEquals(true, result);
+        assertTrue(returnBook.isBookValid(book));
     }
 
     @Test
     public void checkoutAvailableBooksShouldOnlyHaveBooksNotCheckout() {
         List<Book> books = returnBook.getBooksToReturn();
         for (Book book : books) {
-            assertEquals(true, book.isCheckout());
+            assertTrue( book.isCheckout());
         }
     }
 

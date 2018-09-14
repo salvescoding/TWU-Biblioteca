@@ -8,6 +8,7 @@ import org.omg.CORBA.PUBLIC_MEMBER;
 import static org.junit.Assert.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 public class ShelfTest {
 
@@ -33,6 +34,27 @@ public class ShelfTest {
         assertEquals(b.getId(), result.getId());
         assertEquals(b.getAuthor(), result.getAuthor());
         assertEquals(b.getYearPublished(), result.getYearPublished());
+    }
+
+    @Test
+    public void booksShelfShouldNotBeEmptyWhenInitialized() {
+        assertFalse(shelf.listBooks().isEmpty());
+    }
+
+    @Test
+    public void listBooksShouldOnlyReturnAvailableBooks() {
+        List<Book> books = shelf.listBooks();
+        for (Book book : books) {
+            assertFalse(book.isCheckout());
+        }
+    }
+
+    @Test
+    public void returnBooksShouldOnlyReturnCheckoutBooks() {
+        List<Book> books = shelf.returnBooks();
+        for (Book book : books) {
+            assertTrue(book.isCheckout());
+        }
     }
 
 

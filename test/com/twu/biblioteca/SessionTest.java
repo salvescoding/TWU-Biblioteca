@@ -19,7 +19,7 @@ public class SessionTest {
     }
 
     @Test
-    public void sessionShouldInitializeWithAPreSetOfCustomers() {
+    public void sessionShouldInitializeWithAPreSetListOfCustomers() {
         assertFalse(session.getCustomers().isEmpty());
     }
 
@@ -42,12 +42,7 @@ public class SessionTest {
         assertEquals("554594695", currentUser.getPhoneNumber());
     }
 
-    @Test
-    public void whenUserLogoutCurrentSessionShouldBeEmpty() {
-        assertTrue(session.authenticate("123-4567", "password"));
-        session.logout();
-        assertTrue(session.getCurrentSession().isCustomerEmpty());
-    }
+
 
 
 

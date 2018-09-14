@@ -40,17 +40,16 @@ public class CheckoutTest {
     }
 
     @Test
-    public void checkIfBookFoundIsEmptyOrNot() {
+    public void isBookValidShouldReturnTrueWhenBookIsValid() {
         Book book =  checkout.findBook(1);
-        boolean result = checkout.isBookValid(book);
-        assertEquals(true, result);
+        assertTrue(checkout.isBookValid(book));
     }
 
     @Test
     public void checkoutAvailableBooksShouldOnlyHaveBooksNotCheckout() {
         List<Book> books = checkout.getAvailableBooks();
         for (Book book : books) {
-            assertEquals(false, book.isCheckout());
+            assertFalse(book.isCheckout());
         }
     }
 

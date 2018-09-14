@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+
 class Output {
 
 
@@ -23,12 +24,12 @@ class Output {
 
 
     public void headersBooks() {
-        System.out.format("%5s%30s%20s","ID", "Author", "Year Published");
+        System.out.format("%5s%30s%20s%20s","ID", "Author", "Year Published", "Available");
         System.out.println();
     }
 
     public void printBook(Book book) {
-        System.out.format("%5s%30s%20s", book.getId(), book.getAuthor(), book.getYearPublished());
+        System.out.format("%5s%30s%20s", book.getId(), book.getAuthor(), book.getYearPublished(), "Yes");
         System.out.println();
 
     }
@@ -62,6 +63,7 @@ class Output {
     }
 
     private void printDashes() {
+        System.out.println();
         for (int i = 0; i < 70; i++) {
             System.out.print("-");
         }
@@ -82,10 +84,25 @@ class Output {
     }
 
     public void showCustomerDetails(Customer currentSession) {
+        System.out.println();
         System.out.format("%5s%30s%20s","Name", "Email", "Phone Number");
         printDashes();
         System.out.format("%5s%30s%20s", currentSession.getName(),
                  currentSession.getEmail(),
                  currentSession.getPhoneNumber());
+        System.out.println();
+    }
+
+    public void printBookCheckout(Book book) {
+        System.out.format("%5s%30s%20s",
+                book.getId(),
+                book.getAuthor(),
+                book.getYearPublished(),
+                book.getUsernameCheckout());
+        System.out.println();
+    }
+
+    public void noBooksToReturn() {
+        System.out.println("There are no books to return!");
     }
 }
