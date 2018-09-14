@@ -16,22 +16,36 @@ class Output {
         System.out.println();
         System.out.println("Please choose one of the following options");
         System.out.println("1 - List Books");
-        System.out.println("2 - Checkout Book");
-        System.out.println("3 - Return Book");
-        System.out.println("4 - Show my details");
-        System.out.println("5 - Logout");
+        System.out.println("2 - List Movies");
+        System.out.println("3 - Checkout Book");
+        System.out.println("4 - Return Book");
+        System.out.println("5 - Checkout Movie");
+        System.out.println("6 - Return Movie");
+        System.out.println("7 - Show my details");
+        System.out.println("8 - Logout");
     }
 
 
     public void headersBooks() {
-        System.out.format("%5s%30s%20s%20s","ID", "Author", "Year Published", "Available");
+        System.out.format("%5s%30s%20s","ID", "Author", "Year Published");
+        System.out.println();
+    }
+
+    public void headersMovies() {
+        System.out.format("%5s%30s%30s%20s%20s","ID", "Title", "Director", "Year Published", "Rating");
         System.out.println();
     }
 
     public void printBook(Book book) {
-        System.out.format("%5s%30s%20s", book.getId(), book.getAuthor(), book.getYearPublished(), "Yes");
+        System.out.format("%5s%30s%20s", book.getId(), book.getAuthor(), book.getYearPublished());
         System.out.println();
 
+    }
+
+    public void printMovie(Movie movie) {
+        System.out.format("%5s%30s%30s%20s%20s",movie.getId(),
+                movie.getName(), movie.getDirector(), movie.getYearOfRelease(), movie.getRating());
+        System.out.println();
     }
 
 
@@ -51,9 +65,10 @@ class Output {
         System.out.println("Thank you for returning the book.");
     }
 
-    public void bookNotFound() {
-        System.out.println("Book not found, please try again.");
+    public void itemNotFound(String item) {
+        System.out.println(item + " not found, please try again.");
     }
+
 
     public void goodBye() {
         System.out.println();
@@ -97,12 +112,7 @@ class Output {
         System.out.format("%5s%30s%20s",
                 book.getId(),
                 book.getAuthor(),
-                book.getYearPublished(),
-                book.getUsernameCheckout());
+                book.getYearPublished());
         System.out.println();
-    }
-
-    public void noBooksToReturn() {
-        System.out.println("There are no books to return!");
     }
 }

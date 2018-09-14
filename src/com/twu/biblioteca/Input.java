@@ -10,8 +10,8 @@ class Input {
         return printGeneralUserInput("Choose the number:  ");
     }
 
-    public int getIdOfBook() {
-        return printGeneralUserInput("Please choose the ID of the book: ");
+    public int getId() {
+        return printGeneralUserInput("Please choose the ID: ");
     }
 
     private int printGeneralUserInput(String print) {
@@ -27,6 +27,7 @@ class Input {
     }
 
 
+
     public String getCustomerDetails(String details) {
         System.out.println();
         System.out.print("Please introduce your " + details + ": ");
@@ -38,6 +39,5 @@ class Input {
         }
         return userInput.next();
     }
-
 
 }

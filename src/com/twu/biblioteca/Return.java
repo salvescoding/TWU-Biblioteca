@@ -16,7 +16,7 @@ public class Return {
     public void returnBook() {
         List<Book> booksToReturn = getBooksToReturn();
         printBooksToReturn(booksToReturn);
-        int id = userInput.getIdOfBook();
+        int id = userInput.getId();
         Book book = findBook(id);
         returnBookIfValid(book);
 
@@ -39,14 +39,14 @@ public class Return {
             book.returnBook();
             printMessage(isBookValid(book));
         } else {
-            print.bookNotFound();
+            print.itemNotFound("Book");
             printMessage(false);
             this.returnBook();
         }
     }
 
     protected Book findBook(int id) {
-        return this.shelf.find(id);
+        return this.shelf.findBook(id);
     }
 
     protected boolean isBookValid(Book book) {

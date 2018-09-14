@@ -14,12 +14,34 @@ public class Checkout {
 
     public void checkoutBook() {
         this.listAvailableBooks();
-        int id = userInput.getIdOfBook();
+        int id = userInput.getId();
         Book book = findBook(id);
         checkoutBookIfValid(book);
     }
 
-    public void listAvailableBooks() {
+    public void checkoutMovie() {
+        this.listAvailableMovies();
+        int id = userInput.getId();
+        Movie movie = findMovie(id);
+        checkoutMovieIfValid(movie);
+    }
+
+    protected void listAvailableMovies() {
+        List<Movie> movies = this.getAvailableMovies();
+        printAvailableMovies(movies);
+    }
+
+    private void printAvailableMovies(List<Movie> movies) {
+        print.headersMovies();
+        for (Movie movie : movies) {
+            print.printMovie(movie);
+        }
+
+    }
+
+    protected List<Movie> getAvailableMovies() { return this.shelf.listMovies(); }
+
+    protected void listAvailableBooks() {
         List<Book> books = this.getAvailableBooks();
         printAvailableBooks(books);
     }
@@ -35,24 +57,37 @@ public class Checkout {
         }
     }
 
+    private void checkoutMovieIfValid(Movie movie) {
+        if (isMovieValid(movie)) {
+            movie.checkoutMovie();
+            printMessage(isMovieValid(movie));
+        } else {
+            print.itemNotFound("Movie");
+            printMessage(false);
+            this.checkoutMovie();
+        }
+    }
+
     private void checkoutBookIfValid(Book book) {
         if (isBookValid(book)) {
             book.checkoutBook();
             printMessage(isBookValid(book));
         } else {
-            print.bookNotFound();
+            print.itemNotFound("Book");
             printMessage(false);
             this.checkoutBook();
         }
     }
 
     protected Book findBook(int id) {
-        return this.shelf.find(id);
+        return this.shelf.findBook(id);
     }
 
-    protected boolean isBookValid(Book book) {
-        return book.isValid();
-    }
+    public Movie findMovie(int id) { return this.shelf.findMovie(id); }
+
+    protected boolean isBookValid(Book book) { return book.isValid(); }
+
+    public boolean isMovieValid(Movie movie) { return movie.isValid(); }
 
     protected void printMessage(boolean status) {
         if (status) {
@@ -61,6 +96,5 @@ public class Checkout {
             print.unsuccessfullCheckout();
         }
     }
-
 }
 

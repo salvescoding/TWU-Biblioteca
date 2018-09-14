@@ -8,7 +8,7 @@ class Biblioteca {
     private final Shelf shelf = new Shelf();
     private final Session session = new Session();
     private final Checkout checkout = new Checkout(shelf);
-    private final Return returnBook = new Return(shelf);
+    private final Return returnItem = new Return(shelf);
 
     public void run() {
         print.welcomeMessage();
@@ -30,13 +30,19 @@ class Biblioteca {
         switch (userChoice) {
             case 1: checkout.listAvailableBooks();
                     break;
-            case 2: checkout.checkoutBook();
+            case 2: checkout.listAvailableMovies();
+                break;
+            case 3: checkout.checkoutBook();
                     break;
-            case 3: returnBook.returnBook();
+            case 4: returnItem.returnBook();
                     break;
-            case 4: session.showCustomerDetails();
+            case 5: checkout.checkoutMovie();
                     break;
-            case 5: session.logout();
+            case 6:
+                    break;
+            case 7: session.showCustomerDetails();
+                    break;
+            case 8: session.logout();
                     break;
         }
     }

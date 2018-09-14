@@ -67,5 +67,21 @@ public class CheckoutTest {
         assertEquals(expected, outContent.toString());
     }
 
+    @Test
+    public void isMovieValidShouldReturnTrueWhenMovieIsValid() {
+        Movie movie =  checkout.findMovie(1);
+        assertTrue(checkout.isMovieValid(movie));
+    }
+
+    @Test
+    public void checkoutAvailableMoviesShouldOnlyHaveMoviesNotCheckout() {
+        List<Movie> movies = checkout.getAvailableMovies();
+        for (Movie movie : movies) {
+            assertFalse(movie.isCheckout());
+        }
+    }
+
+
+
 
 }

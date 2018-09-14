@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 import static org.junit.Assert.*;
 import java.io.ByteArrayOutputStream;
@@ -30,15 +29,16 @@ public class ShelfTest {
     @Test
     public void findBookWithIdShouldReturnTheCorrectBook() {
         Book b = new Book(1,"Paulo Coelho", "1999");
-        Book result = shelf.find(1);
+        Book result = shelf.findBook(1);
         assertEquals(b.getId(), result.getId());
         assertEquals(b.getAuthor(), result.getAuthor());
         assertEquals(b.getYearPublished(), result.getYearPublished());
     }
 
     @Test
-    public void booksShelfShouldNotBeEmptyWhenInitialized() {
+    public void booksAndMoviesShelfShouldNotBeEmptyWhenInitialized() {
         assertFalse(shelf.listBooks().isEmpty());
+        assertFalse(shelf.listMovies().isEmpty());
     }
 
     @Test
@@ -56,6 +56,35 @@ public class ShelfTest {
             assertTrue(book.isCheckout());
         }
     }
+
+
+    @Test
+    public void listMoviesShouldOnlyReturnAvailableMovies() {
+        List<Movie> movies = shelf.listMovies();
+        for (Movie movie : movies) {
+            assertFalse(movie.isCheckout());
+        }
+    }
+
+    @Test
+    public void returnMovioesShouldOnlyReturnCheckoutMovies() {
+        List<Movie> movies = shelf.returnMovies();
+        for (Movie movie : movies) {
+            assertTrue(movie.isCheckout());
+        }
+    }
+
+    @Test
+    public void findMoviekWithIdShouldReturnTheCorrectBook() {
+        Movie movieOne = shelf.findMovie(1);
+        assertEquals("Pulp Fiction", movieOne.getName());
+        assertEquals("Quentin Tarantino", movieOne.getDirector());
+        assertEquals("1995", movieOne.getYearOfRelease());
+        assertEquals(9, movieOne.getRating());
+    }
+
+
+
 
 
 }
