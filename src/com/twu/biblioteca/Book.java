@@ -9,7 +9,7 @@ class Book {
 
     public int getId() { return this.id; }
 
-    public void setId(int id) { this.id = id; }
+    private void setId(int id) { this.id = id; }
 
     public void returnBook() { setCheckout(false); }
 
@@ -21,11 +21,11 @@ class Book {
 
     public String getAuthor() { return author; }
 
-    public void setAuthor(String author) { this.author = author; }
+    private void setAuthor(String author) { this.author = author; }
 
     public String getYearPublished() { return yearPublished; }
 
-    public void setYearPublished(String yearPublished) { this.yearPublished = yearPublished; }
+    private void setYearPublished(String yearPublished) { this.yearPublished = yearPublished; }
 
 
     public Book(int id, String author, String yearPublished) {
@@ -35,8 +35,10 @@ class Book {
         this.checkout = false;
     }
 
+    public Book() {}
 
-    public boolean isEmpty() {
-        return getId() == 0 && getAuthor() == null && getYearPublished() == null;
+
+    public boolean isValid() {
+        return getId() != 0 || getAuthor() != null || getYearPublished() != null;
     }
 }

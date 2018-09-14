@@ -16,7 +16,7 @@ public class ShelfTest {
     private final PrintStream originalOut = System.out;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         shelf = new Shelf();
         System.setOut(new PrintStream(outContent));
     }

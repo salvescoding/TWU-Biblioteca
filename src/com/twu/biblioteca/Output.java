@@ -17,7 +17,8 @@ class Output {
         System.out.println("1 - List Books");
         System.out.println("2 - Checkout Book");
         System.out.println("3 - Return Book");
-        System.out.println("4 - Quit");
+        System.out.println("4 - Show my details");
+        System.out.println("5 - Logout");
     }
 
 
@@ -70,5 +71,21 @@ class Output {
     public void unsuccessfullReturn() {
         System.out.println();
         System.out.println("That is not a valid book to return.");
+    }
+
+    public void welcomeMessagLogin(Customer currentSession) {
+        System.out.println("Welcome back " + currentSession.getName() + " :)");
+    }
+
+    public void incorrectCustomerDetails() {
+        System.out.println("Incorrect details, please try again");
+    }
+
+    public void showCustomerDetails(Customer currentSession) {
+        System.out.format("%5s%30s%20s","Name", "Email", "Phone Number");
+        printDashes();
+        System.out.format("%5s%30s%20s", currentSession.getName(),
+                 currentSession.getEmail(),
+                 currentSession.getPhoneNumber());
     }
 }

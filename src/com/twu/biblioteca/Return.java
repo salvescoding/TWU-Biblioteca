@@ -47,7 +47,7 @@ public class Return {
     }
 
     protected boolean isBookValid(Book book) {
-        return !book.isEmpty();
+        return book.isValid();
     }
 
     protected void printMessage(boolean status) {

@@ -26,4 +26,18 @@ class Input {
         return userInput.nextInt();
     }
 
+
+    public String getCustomerDetails(String details) {
+        System.out.println();
+        System.out.print("Please introduce your " + details + ": ");
+
+        while (!userInput.hasNext()) {
+            userInput.next();
+            System.out.println("Invalid input! Please introduce your details");
+            System.out.print("Please introduce your " + details + ": ");
+        }
+        return userInput.next();
+    }
+
+
 }
