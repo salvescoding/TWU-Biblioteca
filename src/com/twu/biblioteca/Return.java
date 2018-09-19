@@ -19,11 +19,29 @@ public class Return {
         int id = userInput.getId();
         Book book = findBook(id);
         returnBookIfValid(book);
+    }
 
+    public void returnMovie() {
+        List<Movie> moviesToReturn = getMoviesToReturn();
+        printMoviesToReturn(moviesToReturn);
+        int id = userInput.getId();
+        Movie movie = findMovie(id);
+        returnMovieIfValid(movie);
+    }
+
+    private List<Movie> getMoviesToReturn() {
+        return this.shelf.returnMovies();
     }
 
     protected List<Book> getBooksToReturn() {
         return this.shelf.returnBooks();
+    }
+
+    private void printMoviesToReturn(List<Movie> moviesToReturn) {
+        print.headersMovies();
+        for (Movie movie : moviesToReturn) {
+            print.printMovie(movie);
+        }
     }
 
     private void printBooksToReturn(List<Book> booksToReturn) {
@@ -31,8 +49,9 @@ public class Return {
         for (Book book : booksToReturn) {
             print.printBookCheckout(book);
         }
-
     }
+
+
 
     private void returnBookIfValid(Book book) {
         if (isBookValid(book)) {
@@ -45,8 +64,26 @@ public class Return {
         }
     }
 
+    private void returnMovieIfValid(Movie movie) {
+        if (isMovieValid(movie)) {
+            movie.returnMovie();
+            printMessage(isMovieValid(movie));
+        } else {
+            print.itemNotFound("Movie");
+            this.returnMovie();
+        }
+    }
+
     protected Book findBook(int id) {
         return this.shelf.findBook(id);
+    }
+
+    protected Movie findMovie(int id) {
+        return this.shelf.findMovie(id);
+    }
+
+    private boolean isMovieValid(Movie movie) {
+        return movie.isValid();
     }
 
     protected boolean isBookValid(Book book) {

@@ -12,8 +12,9 @@ class Biblioteca {
 
     public void run() {
         print.welcomeMessage();
-        while (!session.login()) {
-            session.login();
+        boolean sessionOn = session.login();
+        while (!sessionOn) {
+            sessionOn = session.login();
         }
         print.listOptions();
         int userChoice = userInput.getUserInput();
@@ -38,7 +39,7 @@ class Biblioteca {
                     break;
             case 5: checkout.checkoutMovie();
                     break;
-            case 6:
+            case 6: returnItem.returnMovie();
                     break;
             case 7: session.showCustomerDetails();
                     break;

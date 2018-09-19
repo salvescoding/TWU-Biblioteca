@@ -35,6 +35,7 @@ public class MovieTest {
 
     @Test
     public void bookIsCheckoutShouldReturnFalseWhenReturnBook() {
+        movie.checkoutMovie();
         movie.returnMovie();
         assertFalse(movie.isCheckout());
     }

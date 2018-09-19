@@ -33,6 +33,7 @@ public class BookTest {
 
     @Test
     public void bookIsCheckoutShouldReturnFalseWhenReturnBook() {
+        book.checkoutBook();
         book.returnBook();
         assertFalse(book.isCheckout());
     }

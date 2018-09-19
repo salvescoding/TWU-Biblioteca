@@ -13,14 +13,14 @@ import static org.junit.Assert.*;
 
 public class ReturnTest {
 
-    private Return returnBook;
+    private Return returnItem;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
     @Before
     public void setUp() {
         Shelf shelf = new Shelf();
-        returnBook = new Return(shelf);
+        returnItem = new Return(shelf);
         System.setOut(new PrintStream(outContent));
     }
 
@@ -32,7 +32,7 @@ public class ReturnTest {
     @Test
     public void findBookShouldReturnTheCorrectObject() {
         Book b1 = new Book(1,"Paulo Coelho", "1999");
-        Book result = returnBook.findBook(1);
+        Book result = returnItem.findBook(1);
         assertEquals(b1.getId(), result.getId());
         assertEquals(b1.getAuthor(), result.getAuthor());
         assertEquals(b1.getYearPublished(), result.getYearPublished());
@@ -40,13 +40,13 @@ public class ReturnTest {
 
     @Test
     public void checkIfBookFoundIsEmptyOrNot() {
-        Book book =  returnBook.findBook(1);
-        assertTrue(returnBook.isBookValid(book));
+        Book book =  returnItem.findBook(1);
+        assertTrue(returnItem.isBookValid(book));
     }
 
     @Test
     public void checkoutAvailableBooksShouldOnlyHaveBooksNotCheckout() {
-        List<Book> books = returnBook.getBooksToReturn();
+        List<Book> books = returnItem.getBooksToReturn();
         for (Book book : books) {
             assertTrue( book.isCheckout());
         }
@@ -55,16 +55,31 @@ public class ReturnTest {
     @Test
     public void shouldPrintCorrectMessageIfBookWasCheckoutSuccessful() {
         String expected = "\nThank you for returning the book.\n";
-        returnBook.printMessage(true);
+        returnItem.printMessage(true);
         assertEquals(expected, outContent.toString());
     }
 
     @Test
     public void shouldPrintCorrectMessageIfBookWasCheckoutUnsuccessful() {
         String expected = "\nThat is not a valid book to return.\n";
-        returnBook.printMessage(false);
+        returnItem.printMessage(false);
         assertEquals(expected, outContent.toString());
     }
+
+    @Test
+    public void findMovieShouldReturnTheCorrectObject() {
+        Movie movieOne = new Movie(1,"Pulp Fiction",
+                "Quentin Tarantino",
+                "1995",
+                9);
+        Movie movieFound = returnItem.findMovie(1);
+        assertEquals(movieOne.getName(), movieFound.getName());
+        assertEquals(movieOne.getDirector(), movieFound.getDirector());
+        assertEquals(movieOne.getYearOfRelease(), movieFound.getYearOfRelease());
+        assertEquals(movieOne.getRating(), movieFound.getRating());
+
+    }
+
 
 
 }
