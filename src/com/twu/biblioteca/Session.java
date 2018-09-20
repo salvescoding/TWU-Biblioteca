@@ -8,7 +8,7 @@ public class Session {
     private List<Customer> customers = new ArrayList<Customer>();
     private Input userInput = new Input();
     private Output print = new Output();
-    private Customer currentSession = new Customer();
+    private Customer currentUser = new Customer();
 
     public Session() {
         createCustomers();
@@ -19,7 +19,7 @@ public class Session {
         String libraryNumber = userInput.getCustomerDetails("Library number");
         String password = userInput.getCustomerDetails("Password");
         if (authenticate(libraryNumber, password)) {
-            print.welcomeMessagLogin(getCurrentSession());
+            print.welcomeMessagLogin(getCurrentUser());
             flag = true;
         } else {
             print.incorrectCustomerDetails();
@@ -31,12 +31,12 @@ public class Session {
         return customers;
     }
 
-    protected Customer getCurrentSession() {
-        return currentSession;
+    protected Customer getCurrentUser() {
+        return currentUser;
     }
 
     protected void logout() {
-        currentSession = new Customer();
+        currentUser = new Customer();
         this.login();
     }
 
@@ -47,7 +47,7 @@ public class Session {
         for (Customer customerA : customers) {
             if ((customerA.getLibraryNumber().equals(libraryNumber)) && (customerA.getPassword().equals(password))) {
                 flag = true;
-                currentSession = customerA;
+                currentUser = customerA;
             }
         }
         return flag;
@@ -69,6 +69,6 @@ public class Session {
 
 
     public void showCustomerDetails() {
-        print.showCustomerDetails(getCurrentSession());
+        print.showCustomerDetails(getCurrentUser());
     }
 }

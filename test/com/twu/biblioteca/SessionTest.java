@@ -3,9 +3,6 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class SessionTest {
@@ -36,7 +33,7 @@ public class SessionTest {
     @Test
     public void afterAuthenticateSessionShouldHoldCurrentCustomerDetails() {
         assertTrue(session.authenticate("123-4567", "password"));
-        Customer currentUser = session.getCurrentSession();
+        Customer currentUser = session.getCurrentUser();
         assertEquals("salves", currentUser.getName());
         assertEquals("salves@mail.com", currentUser.getEmail());
         assertEquals("554594695", currentUser.getPhoneNumber());

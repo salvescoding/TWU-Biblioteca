@@ -8,10 +8,6 @@ class Book {
     private boolean checkout;
     private String usernameCheckout;
 
-    public String getUsernameCheckout() { return usernameCheckout; }
-
-    public void setUsernameCheckout(String usernameCheckout) { this.usernameCheckout = usernameCheckout; }
-
     public int getId() { return this.id; }
 
     private void setId(int id) { this.id = id; }

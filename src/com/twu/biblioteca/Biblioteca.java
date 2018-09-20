@@ -18,7 +18,7 @@ class Biblioteca {
         }
         print.listOptions();
         int userChoice = userInput.getUserInput();
-        while (!session.getCurrentSession().isCustomerEmpty()) {
+        while (!session.getCurrentUser().isCustomerEmpty()) {
             action(userChoice);
             print.listOptions();
             userChoice = userInput.getUserInput();
