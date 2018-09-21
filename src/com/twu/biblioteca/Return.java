@@ -66,7 +66,7 @@ public class Return {
 
     private void returnMovieIfValid(Movie movie) {
         if (isMovieValid(movie)) {
-            movie.returnMovie();
+            movie.returnItem();
             printMessage(isMovieValid(movie));
         } else {
             print.itemNotFound("Movie");

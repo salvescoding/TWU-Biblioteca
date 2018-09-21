@@ -4,20 +4,31 @@ import java.util.List;
 
 public class Checkout {
 
-    private Shelf shelf;
     private Output print = new Output();
     private final Input userInput = new Input();
+    private final Session session;
 
-    public Checkout(Shelf shelf) {
-        this.shelf = shelf;
+    public Checkout(Session session) {
+        this.session = session;
     }
 
-    public void checkoutBook() {
-        this.listAvailableBooks();
+    public void checkoutItem(List<? extends LibraryItem> itemsList) {
+        List<? extends LibraryItem> items = itemsList;
+        this.listAvailableItems(items);
         int id = userInput.getId();
-        Book book = findBook(id);
+        Book book = findBook(id, itemsList);
         checkoutBookIfValid(book);
     }
+
+    private void listAvailableItems(List<? extends LibraryItem> items) {
+        for (LibraryItem item : items) {
+            if (item instanceof Movie) {
+                Movie movie = (Movie) item;
+                print.printMovie(movie);
+            }
+        }
+    }
+
 
     public void checkoutMovie() {
         this.listAvailableMovies();
@@ -39,8 +50,6 @@ public class Checkout {
 
     }
 
-    protected List<Movie> getAvailableMovies() { return this.shelf.listMovies(); }
-
     protected void listAvailableBooks() {
         List<Book> books = this.getAvailableBooks();
         printAvailableBooks(books);
@@ -59,7 +68,7 @@ public class Checkout {
 
     private void checkoutMovieIfValid(Movie movie) {
         if (isMovieValid(movie)) {
-            movie.checkoutMovie();
+            movie.checkoutItem();
             printMessage(isMovieValid(movie));
         } else {
             print.itemNotFound("Movie");
@@ -79,7 +88,7 @@ public class Checkout {
         }
     }
 
-    protected Book findBook(int id) {
+    protected Book findBook(int id, List<? extends LibraryItem> itemsList) {
         return this.shelf.findBook(id);
     }
 

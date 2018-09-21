@@ -22,6 +22,9 @@ public class LibraryItem {
 
     public void setCheckoutBy(Customer checkoutBy) { this.checkoutBy = checkoutBy; }
 
+    public LibraryItem() {
+    }
+
     public LibraryItem(int id, String yearOfRelease) {
         this.id = id;
         this.yearOfRelease = yearOfRelease;

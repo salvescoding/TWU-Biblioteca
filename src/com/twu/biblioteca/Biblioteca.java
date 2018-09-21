@@ -7,8 +7,8 @@ class Biblioteca {
     private final Output print = new Output();
     private final Shelf shelf = new Shelf();
     private final Session session = new Session();
-    private final Checkout checkout = new Checkout(shelf);
-    private final Return returnItem = new Return(shelf);
+    private final Checkout checkout = new Checkout(session);
+    private final Return returnItem = new Return(session);
 
     public void run() {
         print.welcomeMessage();
@@ -33,7 +33,7 @@ class Biblioteca {
                     break;
             case 2: checkout.listAvailableMovies();
                 break;
-            case 3: checkout.checkoutBook();
+            case 3: checkout.checkoutItem(shelf.getMovies());
                     break;
             case 4: returnItem.returnBook();
                     break;

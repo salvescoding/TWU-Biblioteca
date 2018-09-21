@@ -13,14 +13,8 @@ public class Shelf {
         createMovies();
     }
 
-    protected List<Book> listBooks() {
-        List<Book> availableBooks = new ArrayList<Book>();
-        for (Book book : books) {
-            if (!book.isCheckout()) {
-                availableBooks.add(book);
-            }
-        }
-        return availableBooks;
+    protected List<Book> getBooks() {
+        return books;
     }
 
     protected List<Book> returnBooks() {
@@ -33,14 +27,8 @@ public class Shelf {
         return booksToReturn;
     }
 
-    protected List<Movie> listMovies() {
-        List<Movie> availableMovies = new ArrayList<Movie>();
-        for (Movie movie : movies) {
-            if (!movie.isCheckout()) {
-                availableMovies.add(movie);
-            }
-        }
-        return availableMovies;
+    protected List<Movie> getMovies() {
+        return movies;
     }
 
     public List<Movie> returnMovies() {
