@@ -25,6 +25,9 @@ public class Checkout {
             if (item instanceof Movie) {
                 Movie movie = (Movie) item;
                 print.printMovie(movie);
+            } else if (item instanceof Book) {
+                Book book = (Book) item;
+                print.printBook(book);
             }
         }
     }
