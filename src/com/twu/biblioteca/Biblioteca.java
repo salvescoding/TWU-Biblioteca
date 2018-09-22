@@ -29,17 +29,17 @@ class Biblioteca {
 
     private void action(int userChoice) {
         switch (userChoice) {
-            case 1: checkout.listAvailableBooks();
+            case 1: checkout.listAvailableItems(shelf.getBooks());
                     break;
-            case 2: checkout.listAvailableMovies();
+            case 2: checkout.listAvailableItems(shelf.getMovies());
                 break;
-            case 3: checkout.checkoutItem(shelf.getMovies());
+            case 3: checkout.checkoutItem(shelf.getBooks());
                     break;
-            case 4: returnItem.returnBook();
+            case 4: returnItem.returnItem(shelf.getBooks());
                     break;
-            case 5: checkout.checkoutMovie();
+            case 5: checkout.checkoutItem(shelf.getMovies());
                     break;
-            case 6: returnItem.returnMovie();
+            case 6: returnItem.returnItem(shelf.getMovies());
                     break;
             case 7: session.showCustomerDetails();
                     break;

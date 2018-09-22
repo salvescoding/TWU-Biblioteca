@@ -37,7 +37,7 @@ class Output {
     }
 
     public void printBook(Book book) {
-        System.out.format("%5s%30s%20s", book.getId(), book.getAuthor(), book.getYearPublished());
+        System.out.format("%5s%30s%20s", book.getId(), book.getAuthor(), book.getYearOfRelease());
         System.out.println();
 
     }
@@ -49,9 +49,9 @@ class Output {
     }
 
 
-    public void successfullCheckout() {
+    public void successfullCheckout(String item) {
         System.out.println();
-        System.out.println("Thank you! Enjoy the book");
+        System.out.println("Thank you! Enjoy the " + item);
     }
 
 
@@ -112,7 +112,7 @@ class Output {
         System.out.format("%5s%30s%20s",
                 book.getId(),
                 book.getAuthor(),
-                book.getYearPublished());
+                book.getYearOfRelease());
         System.out.println();
     }
 }

@@ -26,7 +26,7 @@ public class ShelfTest {
         System.setOut(originalOut);
     }
 
-    @Test
+    /*@Test
     public void findBookWithIdShouldReturnTheCorrectBook() {
         Book b = new Book(1,"Paulo Coelho", "1999");
         Book result = shelf.findBook(1);
@@ -82,7 +82,7 @@ public class ShelfTest {
         assertEquals("1995", movieOne.getYearOfRelease());
         assertEquals(9, movieOne.getRating());
     }
-
+*/
 
 
 

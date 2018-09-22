@@ -16,97 +16,74 @@ public class Checkout {
         List<? extends LibraryItem> items = itemsList;
         this.listAvailableItems(items);
         int id = userInput.getId();
-        Book book = findBook(id, itemsList);
-        checkoutBookIfValid(book);
+        LibraryItem itemFound = findItem(id, itemsList);
+        checkoutItemIfValid(itemFound);
+
     }
 
-    private void listAvailableItems(List<? extends LibraryItem> items) {
+    protected void listAvailableItems(List<? extends LibraryItem> items) {
         for (LibraryItem item : items) {
             if (item instanceof Movie) {
-                Movie movie = (Movie) item;
-                print.printMovie(movie);
+                printAvailableMovies((Movie) item);
             } else if (item instanceof Book) {
-                Book book = (Book) item;
-                print.printBook(book);
+                printAvailableBooks((Book) item);
             }
         }
     }
 
-
-    public void checkoutMovie() {
-        this.listAvailableMovies();
-        int id = userInput.getId();
-        Movie movie = findMovie(id);
-        checkoutMovieIfValid(movie);
-    }
-
-    protected void listAvailableMovies() {
-        List<Movie> movies = this.getAvailableMovies();
-        printAvailableMovies(movies);
-    }
-
-    private void printAvailableMovies(List<Movie> movies) {
-        print.headersMovies();
-        for (Movie movie : movies) {
-            print.printMovie(movie);
-        }
-
-    }
-
-    protected void listAvailableBooks() {
-        List<Book> books = this.getAvailableBooks();
-        printAvailableBooks(books);
-    }
-
-    protected List<Book> getAvailableBooks() {
-        return this.shelf.listBooks();
-    }
-
-    private void printAvailableBooks(List<Book> books) {
-        print.headersBooks();
-        for (Book book : books) {
+    private void printAvailableBooks(Book item) {
+        if (!item.isCheckout()) {
+            Book book = item;
             print.printBook(book);
         }
     }
 
-    private void checkoutMovieIfValid(Movie movie) {
-        if (isMovieValid(movie)) {
+    private void printAvailableMovies(Movie item) {
+        if (!item.isCheckout()) {
+            Movie movie = item;
+            print.printMovie(movie);
+        }
+    }
+
+    private LibraryItem findItem(int id, List<? extends LibraryItem> itemsList) {
+        LibraryItem itemFound = new LibraryItem();
+        for (LibraryItem item : itemsList) {
+            if (item.getId() == id) {
+                itemFound = item;
+            }
+        }
+        return itemFound;
+    }
+
+    private void checkoutItemIfValid(LibraryItem itemFound) {
+        if (itemFound instanceof Movie) {
+            Movie movie = (Movie) itemFound;
+            checkoutMovie(movie);
+        }  else if (itemFound instanceof Book) {
+            Book book = (Book) itemFound;
+            checkoutBook(book);
+        }
+
+    }
+
+    private void checkoutBook(Book book) {
+        if (book.isValid()) {
+            book.checkoutItem();
+            book.setCheckoutBy(session.getCurrentUser());
+            print.successfullCheckout("Book");
+        }
+    }
+
+
+    public void checkoutMovie(Movie movie) {
+        if (movie.isValid()) {
             movie.checkoutItem();
-            printMessage(isMovieValid(movie));
-        } else {
-            print.itemNotFound("Movie");
-            printMessage(false);
-            this.checkoutMovie();
+            movie.setCheckoutBy(session.getCurrentUser());
+            print.successfullCheckout("Movie");
         }
     }
 
-    private void checkoutBookIfValid(Book book) {
-        if (isBookValid(book)) {
-            book.checkoutBook();
-            printMessage(isBookValid(book));
-        } else {
-            print.itemNotFound("Book");
-            printMessage(false);
-            this.checkoutBook();
-        }
-    }
 
-    protected Book findBook(int id, List<? extends LibraryItem> itemsList) {
-        return this.shelf.findBook(id);
-    }
 
-    public Movie findMovie(int id) { return this.shelf.findMovie(id); }
-
-    protected boolean isBookValid(Book book) { return book.isValid(); }
-
-    public boolean isMovieValid(Movie movie) { return movie.isValid(); }
-
-    protected void printMessage(boolean status) {
-        if (status) {
-            print.successfullCheckout();
-        } else {
-            print.unsuccessfullCheckout();
-        }
-    }
 }
 

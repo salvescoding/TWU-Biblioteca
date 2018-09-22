@@ -21,8 +21,6 @@ public class Movie extends LibraryItem {
         this.rating = rating;
     }
 
-
-
     public boolean isValid() {
         return getId() != 0 && getName() != null &&
                 getDirector() != null &&
